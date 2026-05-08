@@ -65,7 +65,8 @@
         .hero-image { flex: 1; min-width: 320px; text-align: center; }
 
         .hero h1 { font-size: 2.8rem; margin-bottom: 20px; color: var(--secondary-color); font-weight: 900; }
-        .hero h2 { font-size: 1.8rem; margin-bottom: 15px; opacity: 0.9; }
+        .hero h3 { font-size: 1.4rem; margin-bottom: 15px; color: var(--secondary-color); font-weight: 900; }
+        .hero h2 { font-size: 1rem; margin-bottom: 15px; opacity: 0.9; }
         .hero p { font-size: 1.2rem; margin-bottom: 35px; line-height: 1.8; }
 
         /* --- البانر الترويجي --- */
@@ -89,6 +90,7 @@
         .btn {
             display: inline-flex;
             align-items: center;
+            justify-content: center;
             gap: 10px;
             padding: 14px 28px;
             border-radius: 50px;
@@ -98,6 +100,7 @@
             transition: var(--transition);
             border: none;
             cursor: pointer;
+            text-align: center;
         }
 
         .btn-call { background: var(--secondary-color); color: var(--primary-color); }
@@ -126,7 +129,12 @@
         .feature-item h3 { color: var(--primary-color); margin-bottom: 8px; }
 
         /* --- الشبكة (المواصفات والمنتجات) --- */
-        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
+        .grid-3 { 
+            display: grid; 
+            /* التوزيع الافتراضي للشاشات الكبيرة: 3 عناصر في الصف أو أكثر */
+            grid-template-columns: repeat(3, 1fr); 
+            gap: 25px; 
+        }
         
         .spec-card {
             background: #fff;
@@ -146,8 +154,8 @@
             text-align: center;
             padding-bottom: 25px;
         }
-        .product-card img { border-radius: 0; margin-bottom: 20px; }
-        .product-card h3 { padding: 0 15px; margin-bottom: 10px; }
+        .product-card img { border-radius: 0; margin-bottom: 20px; width: 100%; }
+        .product-card h3 { padding: 0 15px; margin-bottom: 10px; font-size: 1.2rem; }
 
         /* --- نقاط الألم (Pain Points) --- */
         .pain-section { background: var(--primary-color); color: white; text-align: center; padding: 60px 20px; }
@@ -171,10 +179,47 @@
         
         .contact-display { font-size: 2rem; font-weight: 900; color: var(--secondary-color); direction: ltr; margin: 20px 0; display: block; }
 
+        /* =========================================
+           إعدادات التجاوب مع الجوال (شاشات 768px فأقل)
+           ========================================= */
         @media (max-width: 768px) {
             .hero h1 { font-size: 2rem; }
-            .section-title { font-size: 1.8rem; }
-            .btn { width: 100%; justify-content: center; }
+            .hero p { font-size: 1.1rem; }
+            .section { padding: 50px 0; }
+            .section-title { font-size: 1.8rem; margin-bottom: 35px; }
+            
+            /* أزرار التواصل عنصرين في الصف */
+            .contact-group { gap: 10px; justify-content: space-between; }
+            .btn { width: 48%; padding: 12px 5px; font-size: 0.9rem; }
+            
+            /* جعل الشبكة تعرض عنصرين (صورتين أو كارتين) في الصف الواحد */
+            .grid-3 { 
+                grid-template-columns: repeat(2, 1fr); 
+                gap: 15px; 
+            }
+            
+            /* تصغير الحشوات لبطاقات المواصفات لتلائم العرض الجديد */
+            .spec-card { padding: 15px; }
+            .spec-card h3 { font-size: 1.1rem; margin-bottom: 10px; }
+            .spec-card p { font-size: 0.85rem; line-height: 1.5; }
+            
+            /* تعديل خطوط المنتجات */
+            .product-card { padding-bottom: 15px; }
+            .product-card h3 { font-size: 0.95rem; }
+            
+            /* الشعارات: عرض 3 عناصر في الصف */
+            .certs-container { gap: 10px; }
+            .certs-container img { max-height: 40px; width: 30%; object-fit: contain; }
+
+            .features-img, .features-list { min-width: 100%; }
+        }
+
+        /* تعديلات إضافية للشاشات الصغيرة جداً */
+        @media (max-width: 400px) {
+            /* الحفاظ على الكروت كعنصرين مع تصغير الخطوط أكثر */
+            .grid-3 { gap: 10px; }
+            .btn { font-size: 0.85rem; }
+            .spec-card h3 { font-size: 1rem; }
         }
     </style>
 </head>
@@ -184,11 +229,11 @@
         <div class="container hero-content">
             <div class="hero-text">
                 <h2>هل ممتلكاتك محمية فعلاً؟</h2>
-                <h1>استمتع براحة البال المطلقة مع أنظمة المراقبة</h1>
+                <h3>استمتع براحة البال المطلقة مع أنظمة المراقبة</h3>
                 <p>لأن أمانك لا يقبل المساومة، نقدم لك حلولاً أمنية متكاملة تمنحك رؤية واضحة وتحكماً كاملاً بلمسة زر من هاتفك.</p>
                 <div class="contact-group">
-                    <a href="tel:966571025752" class="btn btn-call">📞 اتصل بنا الآن</a>
-                    <a href="https://wa.me/966571025752" target="_blank" class="btn btn-whatsapp">💬 مراسلة واتساب</a>
+                    <a href="tel:966571025752" class="btn btn-call">📞 اتصل بنا </a>
+                    <a href="https://wa.me/966571025752" target="_blank" class="btn btn-whatsapp">💬 واتساب</a>
                 </div>
             </div>
             <div class="hero-image">
@@ -200,6 +245,64 @@
     <div class="promo-banner">
         🔥 نمنحك عروض وتخفيضات مخصصة بحسب طلبك. تواصل معنا لتجد أفضل المنتجات بأرخص الاثمان!
     </div>
+     <section class="section">
+        <div class="container">
+            <h2 class="section-title">منتجاتنا المتميزة</h2>
+            <div class="grid-3">
+              
+                <div class="product-card">
+                    <img src="images/EZVES5MINDOOR.jpg" alt="V380 PRO Camera">
+                    
+                </div>
+                <div class="product-card">
+                    <img src="images/CAMERAS.png" alt="V380 PRO Camera">
+                   
+                </div>
+                <div class="product-card">
+                    <img src="images/SUNCAMERS.jpg" alt="V380 PRO Camera">
+                    
+                </div>
+                <div class="product-card">
+                    <img src="images/ezvez2camera5mpoutdoor.png" alt="V380 PRO Camera">
+                    
+                </div>
+                <div class="product-card">
+                    <img src="images/EZVEZ8MPINDOOR.jpg" alt="V380 PRO Camera">
+                    
+                </div>
+                <div class="product-card">
+                    <img src="images/EZVEZ5MPOUTDOOR.jpg" alt="V380 PRO Camera">
+                   
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+     <section class="section" style="background-color: #f0f4f8;">
+        <div class="container">
+            <h2 class="section-title">أهم مواصفات أنظمتنا</h2>
+            <div class="grid-3">
+                <div class="spec-card">
+                    <h3>دقة 4K فائقة</h3>
+                    <p>وضوح تام لأدق التفاصيل والوجوه حتى عند التكبير الرقمي العالي.</p>
+                </div>
+                <div class="spec-card">
+                    <h3>استشعار ذكي</h3>
+                    <p>تنبيهات فورية على هاتفك عند رصد أي حركة بشرية أو مركبات مشبوهة.</p>
+                </div>
+                <div class="spec-card">
+                    <h3>تحدث مباشر</h3>
+                    <p>ميكروفون وسماعة مدمجة للتواصل مع الزوار أو التحذير عن بعد عبر التطبيق.</p>
+                </div>
+                <div class="spec-card">
+                    <h3>مقاومة الطقس</h3>
+                    <p>تصميم صلب (IP67) يتحمل الأمطار والغبار وحرارة الصيف العالية في المملكة.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
 
     <section class="section">
         <div class="container features-wrap">
@@ -228,48 +331,9 @@
         </div>
     </section>
 
-    <section class="section" style="background-color: #f0f4f8;">
-        <div class="container">
-            <h2 class="section-title">أهم مواصفات أنظمتنا</h2>
-            <div class="grid-3">
-                <div class="spec-card">
-                    <h3>دقة 4K فائقة</h3>
-                    <p>وضوح تام لأدق التفاصيل والوجوه حتى عند التكبير الرقمي العالي.</p>
-                </div>
-                <div class="spec-card">
-                    <h3>استشعار ذكي</h3>
-                    <p>تنبيهات فورية على هاتفك عند رصد أي حركة بشرية أو مركبات مشبوهة.</p>
-                </div>
-                <div class="spec-card">
-                    <h3>تحدث مباشر</h3>
-                    <p>ميكروفون وسماعة مدمجة للتواصل مع الزوار أو التحذير عن بعد عبر التطبيق.</p>
-                </div>
-                <div class="spec-card">
-                    <h3>مقاومة الطقس</h3>
-                    <p>تصميم صلب (IP67) يتحمل الأمطار والغبار وحرارة الصيف العالية في المملكة.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+   
 
-    <section class="section">
-        <div class="container">
-            <h2 class="section-title">منتجاتنا وبكجاتنا المتميزة</h2>
-            <div class="grid-3">
-                <div class="product-card">
-                    <img src="images/v380-camera.jpg" alt="V380 PRO Camera">
-                    <h3>كاميرا V380 PRO 4G</h3>
-                    <p>تعمل بالطاقة الشمسية وشريحة البيانات - مثالية للمزارع والمناطق المفتوحة.</p>
-                </div>
-                <div class="product-card">
-                    <img src="images/bundle-offer.jpg" alt="Security Package">
-                    <h3>بكج المراقبة المتكامل</h3>
-                    <p>يشمل 4 كاميرات دقة عالية + جهاز تسجيل + هاردسك 2TB وشامل التركيب.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
+   
     <section class="pain-section">
         <div class="container">
             <h3>كم من المال يضيع في غيابك بسبب <span class="highlight">إهمال الموظفين</span> أو السرقات الخفية؟</h3>
