@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-16739705581"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'AW-16739705581');
+</script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>مؤسسة عروض الانظمة الأمنية | كاميرات المراقبة والأنظمة الذكية</title>
@@ -43,6 +53,12 @@
             height: auto;
             border-radius: var(--border-radius);
             display: block;
+            cursor: zoom-in; /* لتوضيح أن الصورة قابلة للضغط */
+            transition: var(--transition);
+        }
+        
+        img:hover {
+            opacity: 0.9;
         }
 
         /* --- الهيدر والقسم الرئيسي --- */
@@ -131,7 +147,6 @@
         /* --- الشبكة (المواصفات والمنتجات) --- */
         .grid-3 { 
             display: grid; 
-            /* التوزيع الافتراضي للشاشات الكبيرة: 3 عناصر في الصف أو أكثر */
             grid-template-columns: repeat(3, 1fr); 
             gap: 25px; 
         }
@@ -152,9 +167,8 @@
             overflow: hidden;
             box-shadow: 0 10px 25px rgba(0,0,0,0.1);
             text-align: center;
-            
         }
-        .product-card img { border-radius: 0;  width: 100%; }
+        .product-card img { border-radius: 0; width: 100%; height: 250px; object-fit: cover; }
 
         /* --- نقاط الألم (Pain Points) --- */
         .pain-section { background: var(--primary-color); color: white; text-align: center; padding: 60px 20px; }
@@ -163,7 +177,7 @@
 
         /* --- الشعارات --- */
         .certs-container { display: flex; justify-content: center; align-items: center; gap: 50px; flex-wrap: wrap; margin-top: 40px; }
-        .certs-container img { max-height: 70px; filter: grayscale(100%); opacity: 0.7; transition: 0.3s; }
+        .certs-container img { max-height: 70px; filter: grayscale(100%); opacity: 0.7; transition: 0.3s; cursor: default; }
         .certs-container img:hover { filter: grayscale(0); opacity: 1; }
 
         /* --- FAQ --- */
@@ -175,50 +189,58 @@
         footer { background: #081223; color: white; padding: 60px 20px; text-align: center; }
         .footer-logo { font-size: 1.8rem; font-weight: 900; color: var(--secondary-color); margin-bottom: 20px; }
         .footer-desc { max-width: 700px; margin: 0 auto 30px; opacity: 0.8; }
-        
         .contact-display { font-size: 2rem; font-weight: 900; color: var(--secondary-color); direction: ltr; margin: 20px 0; display: block; }
 
         /* =========================================
-           إعدادات التجاوب مع الجوال (شاشات 768px فأقل)
+           نظام عرض الصور بحجم كامل (Lightbox)
            ========================================= */
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 2rem; }
-            .hero p { font-size: 1.1rem; }
-            .section { padding: 50px 0; }
-            .section-title { font-size: 1.8rem; margin-bottom: 35px; }
-            
-            /* أزرار التواصل عنصرين في الصف */
-            .contact-group { gap: 10px; justify-content: space-between; }
-            .btn { width: 48%; padding: 12px 5px; font-size: 0.9rem; }
-            
-            /* جعل الشبكة تعرض عنصرين (صورتين أو كارتين) في الصف الواحد */
-            .grid-3 { 
-                grid-template-columns: repeat(2, 1fr); 
-                gap: 15px; 
-            }
-            
-            /* تصغير الحشوات لبطاقات المواصفات لتلائم العرض الجديد */
-            .spec-card { padding: 15px; }
-            .spec-card h3 { font-size: 1.1rem; margin-bottom: 10px; }
-            .spec-card p { font-size: 0.85rem; line-height: 1.5; }
-            
-            /* تعديل خطوط المنتجات */
-            .product-card { padding-bottom: 15px; }
-            .product-card h3 { font-size: 0.95rem; }
-            
-            /* الشعارات: عرض 3 عناصر في الصف */
-            .certs-container { gap: 10px; }
-            .certs-container img { max-height: 40px; width: 30%; object-fit: contain; }
-
-            .features-img, .features-list { min-width: 100%; }
+        .image-modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            padding: 20px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            cursor: zoom-out;
+            align-items: center;
+            justify-content: center;
         }
 
-        /* تعديلات إضافية للشاشات الصغيرة جداً */
-        @media (max-width: 400px) {
-            /* الحفاظ على الكروت كعنصرين مع تصغير الخطوط أكثر */
-            .grid-3 { gap: 10px; }
-            .btn { font-size: 0.85rem; }
-            .spec-card h3 { font-size: 1rem; }
+        .modal-content {
+            margin: auto;
+            display: block;
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 5px;
+            box-shadow: 0 0 20px rgba(255,255,255,0.1);
+            animation: zoomIn 0.3s ease;
+        }
+
+        @keyframes zoomIn {
+            from { transform: scale(0.7); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: #fff;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        /* تجاوب الجوال */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .contact-group { gap: 10px; justify-content: space-between; }
+            .btn { width: 48%; padding: 12px 5px; font-size: 0.9rem; }
+            .grid-3 { grid-template-columns: repeat(2, 1fr); gap: 15px; }
+            .product-card img { height: 180px; }
         }
     </style>
 </head>
@@ -244,41 +266,34 @@
     <div class="promo-banner">
         🔥 نمنحك عروض وتخفيضات مخصصة بحسب طلبك. تواصل معنا لتجد أفضل المنتجات بأرخص الاثمان!
     </div>
-     <section class="section">
+
+    <section class="section">
         <div class="container">
             <h2 class="section-title">منتجاتنا المتميزة</h2>
             <div class="grid-3">
-              
                 <div class="product-card">
-                    <img src="images/EZVES5MINDOOR.jpg" alt="load image">
-                    
+                    <img src="images/EZVES5MINDOOR.jpg" alt="EZVES 5MP Indoor">
                 </div>
                 <div class="product-card">
-                    <img src="images/CAMERAS.jpg" alt="loading image">
-                   
+                    <img src="images/CAMERAS.jpg" alt="Security Cameras">
                 </div>
                 <div class="product-card">
-                    <img src="images/SUNCAMERS.jpg" alt="loading image">
-                    
+                    <img src="images/SUNCAMERS.jpg" alt="Solar Powered Cameras">
                 </div>
                 <div class="product-card">
-                    <img src="images/ezvez2camera5mpoutdoor.jpg" alt="loading image">
-                    
+                    <img src="images/ezvez2camera5mpoutdoor.jpg" alt="EZVIZ Outdoor Cameras">
                 </div>
                 <div class="product-card">
-                    <img src="images/EZVEZ8MPINDOOR.jpg" alt="loading image">
-                    
+                    <img src="images/EZVEZ8MPINDOOR.jpg" alt="EZVIZ 8MP Indoor">
                 </div>
                 <div class="product-card">
-                    <img src="images/EZVEZ5MPOUTDOOR.jpg" alt="loading image">
-                   
+                    <img src="images/EZVEZ5MPOUTDOOR.jpg" alt="EZVIZ 5MP Outdoor">
                 </div>
-                
             </div>
         </div>
     </section>
 
-     <section class="section" style="background-color: #f0f4f8;">
+    <section class="section" style="background-color: #f0f4f8;">
         <div class="container">
             <h2 class="section-title">أهم مواصفات أنظمتنا</h2>
             <div class="grid-3">
@@ -301,7 +316,6 @@
             </div>
         </div>
     </section>
-
 
     <section class="section">
         <div class="container features-wrap">
@@ -330,9 +344,6 @@
         </div>
     </section>
 
-   
-
-   
     <section class="pain-section">
         <div class="container">
             <h3>كم من المال يضيع في غيابك بسبب <span class="highlight">إهمال الموظفين</span> أو السرقات الخفية؟</h3>
@@ -353,7 +364,7 @@
         </div>
     </section>
 
-    <section class="section" style="background-color: #fff;">
+    <section class="section">
         <div class="container">
             <h2 class="section-title">الأسئلة الشائعة</h2>
             <div class="faq-box">
@@ -370,18 +381,62 @@
         <div class="container">
             <div class="footer-logo">مؤسسة عروض الانظمة الأمنية</div>
             <p class="footer-desc">نحن متخصصون في توريد وتركيب الأنظمة الأمنية والشبكية، السنترالات، الانتركم، أجهزة البصمة وأنظمة الصوت بجميع أنواعها بأفضل جودة وأنسب سعر في المملكة.</p>
-            
             <p>تواصل مع فريق المبيعات فوراً:</p>
             <span class="contact-display">+966 57 102 5752</span>
-            
             <div class="contact-group" style="justify-content: center; margin-top: 20px;">
                 <a href="tel:966571025752" class="btn btn-call">📞 اتصل الآن</a>
                 <a href="https://wa.me/966571025752" target="_blank" class="btn btn-whatsapp">💬 واتساب مباشر</a>
             </div>
-            
             <p style="margin-top: 40px; opacity: 0.5; font-size: 0.9rem;">&copy; 2026 جميع الحقوق محفوظة لمؤسسة عروض الانظمة الأمنية</p>
         </div>
     </footer>
+
+    <div id="imageModal" class="image-modal">
+        <span class="close-modal">&times;</span>
+        <img class="modal-content" id="fullImage">
+    </div>
+
+    <script>
+        // اختيار عناصر الـ Modal
+        const modal = document.getElementById("imageModal");
+        const modalImg = document.getElementById("fullImage");
+        const closeModal = document.getElementsByClassName("close-modal")[0];
+
+        // اختيار جميع الصور في الموقع باستثناء شعارات الاعتماد
+        const allImages = document.querySelectorAll('img:not(.certs-container img)');
+
+        allImages.forEach(img => {
+            img.onclick = function() {
+                modal.style.display = "flex";
+                modalImg.src = this.src;
+                document.body.style.overflow = "hidden"; // منع التمرير عند فتح الصورة
+            }
+        });
+
+        // إغلاق عند الضغط على X
+        closeModal.onclick = function() {
+            closeImage();
+        }
+
+        // إغلاق عند الضغط في أي مكان خارج الصورة
+        modal.onclick = function(event) {
+            if (event.target === modal) {
+                closeImage();
+            }
+        }
+
+        function closeImage() {
+            modal.style.display = "none";
+            document.body.style.overflow = "auto"; // إعادة التمرير
+        }
+
+        // إغلاق عند الضغط على زر ESC في الكيبورد
+        document.addEventListener('keydown', function(event) {
+            if (event.key === "Escape") {
+                closeImage();
+            }
+        });
+    </script>
 
 </body>
 </html>
