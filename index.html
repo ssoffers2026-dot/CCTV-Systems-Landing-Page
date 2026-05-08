@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مؤسسة عروض الانظمة الأمنية | كاميرات المراقبة والأنظمة الذكية</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #0b1c3a; /* الأزرق الداكن الرسمي */
+            --secondary-color: #fca311; /* البرتقالي للأكشن */
+            --whatsapp-color: #25D366;
+            --text-dark: #333;
+            --text-light: #fff;
+            --bg-light: #f4f8fb;
+            --border-radius: 12px;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Tajawal', sans-serif;
+        }
+
+        body {
+            line-height: 1.7;
+            color: var(--text-dark);
+            background-color: var(--bg-light);
+            text-align: right;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+            overflow: hidden;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: var(--border-radius);
+            display: block;
+        }
+
+        /* --- الهيدر والقسم الرئيسي --- */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #1a3a6d 100%);
+            color: var(--text-light);
+            padding: 80px 20px;
+            position: relative;
+        }
+
+        .hero-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .hero-text { flex: 1; min-width: 320px; }
+        .hero-image { flex: 1; min-width: 320px; text-align: center; }
+
+        .hero h1 { font-size: 2.8rem; margin-bottom: 20px; color: var(--secondary-color); font-weight: 900; }
+        .hero h2 { font-size: 1.8rem; margin-bottom: 15px; opacity: 0.9; }
+        .hero p { font-size: 1.2rem; margin-bottom: 35px; line-height: 1.8; }
+
+        /* --- البانر الترويجي --- */
+        .promo-banner {
+            background: #e74c3c;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        /* --- أزرار التواصل السريعة --- */
+        .contact-group {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 28px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-call { background: var(--secondary-color); color: var(--primary-color); }
+        .btn-whatsapp { background: var(--whatsapp-color); color: white; }
+        .btn:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.2); }
+
+        /* --- الأقسام العامة --- */
+        .section { padding: 80px 0; background: #fff; }
+        .section-title { text-align: center; font-size: 2.2rem; margin-bottom: 50px; color: var(--primary-color); font-weight: 800; position: relative; padding-bottom: 15px; }
+        .section-title::after { content: ''; width: 80px; height: 4px; background: var(--secondary-color); position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); }
+
+        /* --- المميزات (Layout Side Image) --- */
+        .features-wrap { display: flex; align-items: center; gap: 50px; flex-wrap: wrap; }
+        .features-img { flex: 1; min-width: 300px; }
+        .features-list { flex: 1; min-width: 300px; }
+
+        .feature-item {
+            background: var(--bg-light);
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: var(--border-radius);
+            border-right: 5px solid var(--secondary-color);
+            transition: var(--transition);
+        }
+        .feature-item:hover { background: #fff; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        .feature-item h3 { color: var(--primary-color); margin-bottom: 8px; }
+
+        /* --- الشبكة (المواصفات والمنتجات) --- */
+        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
+        
+        .spec-card {
+            background: #fff;
+            padding: 30px;
+            text-align: center;
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border: 1px solid #eee;
+        }
+        .spec-card h3 { color: var(--primary-color); margin-bottom: 15px; font-size: 1.4rem; }
+
+        .product-card {
+            background: #fff;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            text-align: center;
+            padding-bottom: 25px;
+        }
+        .product-card img { border-radius: 0; margin-bottom: 20px; }
+        .product-card h3 { padding: 0 15px; margin-bottom: 10px; }
+
+        /* --- نقاط الألم (Pain Points) --- */
+        .pain-section { background: var(--primary-color); color: white; text-align: center; padding: 60px 20px; }
+        .pain-section h3 { font-size: 1.6rem; margin-bottom: 20px; font-weight: 500; line-height: 1.5; }
+        .highlight { color: var(--secondary-color); font-weight: 800; }
+
+        /* --- الشعارات --- */
+        .certs-container { display: flex; justify-content: center; align-items: center; gap: 50px; flex-wrap: wrap; margin-top: 40px; }
+        .certs-container img { max-height: 70px; filter: grayscale(100%); opacity: 0.7; transition: 0.3s; }
+        .certs-container img:hover { filter: grayscale(0); opacity: 1; }
+
+        /* --- FAQ --- */
+        .faq-box { max-width: 800px; margin: auto; }
+        .faq-item { background: #f9f9f9; padding: 20px; margin-bottom: 10px; border-radius: 8px; cursor: pointer; font-weight: bold; color: var(--primary-color); display: flex; justify-content: space-between; align-items: center; }
+        .faq-item::after { content: '+'; font-size: 1.5rem; color: var(--secondary-color); }
+
+        /* --- Footer --- */
+        footer { background: #081223; color: white; padding: 60px 20px; text-align: center; }
+        .footer-logo { font-size: 1.8rem; font-weight: 900; color: var(--secondary-color); margin-bottom: 20px; }
+        .footer-desc { max-width: 700px; margin: 0 auto 30px; opacity: 0.8; }
+        
+        .contact-display { font-size: 2rem; font-weight: 900; color: var(--secondary-color); direction: ltr; margin: 20px 0; display: block; }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .section-title { font-size: 1.8rem; }
+            .btn { width: 100%; justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="hero">
+        <div class="container hero-content">
+            <div class="hero-text">
+                <h2>هل ممتلكاتك محمية فعلاً؟</h2>
+                <h1>استمتع براحة البال المطلقة مع أنظمة المراقبة</h1>
+                <p>لأن أمانك لا يقبل المساومة، نقدم لك حلولاً أمنية متكاملة تمنحك رؤية واضحة وتحكماً كاملاً بلمسة زر من هاتفك.</p>
+                <div class="contact-group">
+                    <a href="tel:966571025752" class="btn btn-call">📞 اتصل بنا الآن</a>
+                    <a href="https://wa.me/966571025752" target="_blank" class="btn btn-whatsapp">💬 مراسلة واتساب</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="images/hero-image.jpg" alt="كاميرات مراقبة متطورة">
+            </div>
+        </div>
+    </header>
+
+    <div class="promo-banner">
+        🔥 نمنحك عروض وتخفيضات مخصصة بحسب طلبك. تواصل معنا لتجد أفضل المنتجات بأرخص الاثمان!
+    </div>
+
+    <section class="section">
+        <div class="container features-wrap">
+            <div class="features-img">
+                <img src="images/technician-install.jpg" alt="فني تركيب محترف">
+            </div>
+            <div class="features-list">
+                <h2 class="section-title" style="text-align: right; margin-left: 0;">لماذا مؤسسة عروض الانظمة الأمنية؟</h2>
+                <div class="feature-item">
+                    <h3>الخبرة والاعتماد الرسمي</h3>
+                    <p>مؤسسة معتمدة بخبرة تزيد عن 8 سنوات في أنظمة الأمن والاتصالات في السوق السعودي.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>الطاقم الفني المتخصص</h3>
+                    <p>فريق هندسي متخصص يضمن لك أفضل توزيع للكاميرات لتغطية كل الزوايا الميتة في موقعك.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>الضمان الذهبي</h3>
+                    <p>ضمان شامل لمدة سنتين على كافة الأجهزة والتركيب، مع استبدال فوري عند وجود عيوب مصنعية.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>سرعة التنفيذ</h3>
+                    <p>نصلك ونقوم بالتركيب والتشغيل في أقل من 24 ساعة فقط من تأكيد طلب الخدمة.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" style="background-color: #f0f4f8;">
+        <div class="container">
+            <h2 class="section-title">أهم مواصفات أنظمتنا</h2>
+            <div class="grid-3">
+                <div class="spec-card">
+                    <h3>دقة 4K فائقة</h3>
+                    <p>وضوح تام لأدق التفاصيل والوجوه حتى عند التكبير الرقمي العالي.</p>
+                </div>
+                <div class="spec-card">
+                    <h3>استشعار ذكي</h3>
+                    <p>تنبيهات فورية على هاتفك عند رصد أي حركة بشرية أو مركبات مشبوهة.</p>
+                </div>
+                <div class="spec-card">
+                    <h3>تحدث مباشر</h3>
+                    <p>ميكروفون وسماعة مدمجة للتواصل مع الزوار أو التحذير عن بعد عبر التطبيق.</p>
+                </div>
+                <div class="spec-card">
+                    <h3>مقاومة الطقس</h3>
+                    <p>تصميم صلب (IP67) يتحمل الأمطار والغبار وحرارة الصيف العالية في المملكة.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">منتجاتنا وبكجاتنا المتميزة</h2>
+            <div class="grid-3">
+                <div class="product-card">
+                    <img src="images/v380-camera.jpg" alt="V380 PRO Camera">
+                    <h3>كاميرا V380 PRO 4G</h3>
+                    <p>تعمل بالطاقة الشمسية وشريحة البيانات - مثالية للمزارع والمناطق المفتوحة.</p>
+                </div>
+                <div class="product-card">
+                    <img src="images/bundle-offer.jpg" alt="Security Package">
+                    <h3>بكج المراقبة المتكامل</h3>
+                    <p>يشمل 4 كاميرات دقة عالية + جهاز تسجيل + هاردسك 2TB وشامل التركيب.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="pain-section">
+        <div class="container">
+            <h3>كم من المال يضيع في غيابك بسبب <span class="highlight">إهمال الموظفين</span> أو السرقات الخفية؟</h3>
+            <h3>هل تملك <span class="highlight">دليلاً قاطعاً</span> يحفظ حقك القانوني إذا حدث خلاف داخل عملك اليوم؟</h3>
+            <p style="margin-top: 20px; opacity: 0.8;">لا تنتظر حدوث الكارثة.. احمِ مستقبلك الآن.</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">اعتماداتنا وموثوقيتنا</h2>
+            <p style="text-align: center;">نحن كيان رسمي مسجل لضمان حقوقك وجودة الخدمة المقدمة</p>
+            <div class="certs-container">
+                <img src="images/sbc-logo.png" alt="المركز السعودي للأعمال">
+                <img src="images/zatca-logo.png" alt="هيئة الزكاة والضريبة">
+                <img src="images/maroof-logo.png" alt="معروف">
+            </div>
+        </div>
+    </section>
+
+    <section class="section" style="background-color: #fff;">
+        <div class="container">
+            <h2 class="section-title">الأسئلة الشائعة</h2>
+            <div class="faq-box">
+                <div class="faq-item">هل يمكنني مراقبة الكاميرات وأنا خارج المنزل أو في بلد آخر؟</div>
+                <div class="faq-item">ماذا يحدث في حال انقطاع التيار الكهربائي؟</div>
+                <div class="faq-item">هل الصورة تكون واضحة في الظلام التام؟</div>
+                <div class="faq-item">كم يوماً يمكن للنظام الاحتفاظ بالتسجيلات؟</div>
+                <div class="faq-item">هل الكاميرات الخارجية تتحمل الأمطار وحرارة الصيف؟</div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-logo">مؤسسة عروض الانظمة الأمنية</div>
+            <p class="footer-desc">نحن متخصصون في توريد وتركيب الأنظمة الأمنية والشبكية، السنترالات، الانتركم، أجهزة البصمة وأنظمة الصوت بجميع أنواعها بأفضل جودة وأنسب سعر في المملكة.</p>
+            
+            <p>تواصل مع فريق المبيعات فوراً:</p>
+            <span class="contact-display">+966 57 102 5752</span>
+            
+            <div class="contact-group" style="justify-content: center; margin-top: 20px;">
+                <a href="tel:966571025752" class="btn btn-call">📞 اتصل الآن</a>
+                <a href="https://wa.me/966571025752" target="_blank" class="btn btn-whatsapp">💬 واتساب مباشر</a>
+            </div>
+            
+            <p style="margin-top: 40px; opacity: 0.5; font-size: 0.9rem;">&copy; 2026 جميع الحقوق محفوظة لمؤسسة عروض الانظمة الأمنية</p>
+        </div>
+    </footer>
+
+</body>
+</html>
