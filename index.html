@@ -1,14 +1,6 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-T253S86J');</script>
-<!-- End Google Tag Manager -->
-    <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=AW-16739705581"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -60,7 +52,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             height: auto;
             border-radius: var(--border-radius);
             display: block;
-            cursor: zoom-in; /* لتوضيح أن الصورة قابلة للضغط */
+            cursor: zoom-in;
             transition: var(--transition);
         }
         
@@ -135,7 +127,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         .section-title { text-align: center; font-size: 2.2rem; margin-bottom: 50px; color: var(--primary-color); font-weight: 800; position: relative; padding-bottom: 15px; }
         .section-title::after { content: ''; width: 80px; height: 4px; background: var(--secondary-color); position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); }
 
-        /* --- المميزات (Layout Side Image) --- */
+        /* --- المميزات --- */
         .features-wrap { display: flex; align-items: center; gap: 50px; flex-wrap: wrap; }
         .features-img { flex: 1; min-width: 300px; }
         .features-list { flex: 1; min-width: 300px; }
@@ -151,7 +143,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         .feature-item:hover { background: #fff; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
         .feature-item h3 { color: var(--primary-color); margin-bottom: 8px; }
 
-        /* --- الشبكة (المواصفات والمنتجات) --- */
+        /* --- الشبكة --- */
         .grid-3 { 
             display: grid; 
             grid-template-columns: repeat(3, 1fr); 
@@ -177,7 +169,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         }
         .product-card img { border-radius: 0; width: 100%; height: 250px; object-fit: cover; }
 
-        /* --- نقاط الألم (Pain Points) --- */
+        /* --- نقاط الألم --- */
         .pain-section { background: var(--primary-color); color: white; text-align: center; padding: 60px 20px; }
         .pain-section h3 { font-size: 1.6rem; margin-bottom: 20px; font-weight: 500; line-height: 1.5; }
         .highlight { color: var(--secondary-color); font-weight: 800; }
@@ -187,10 +179,45 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         .certs-container img { max-height: 70px; filter: grayscale(100%); opacity: 0.7; transition: 0.3s; cursor: default; }
         .certs-container img:hover { filter: grayscale(0); opacity: 1; }
 
-        /* --- FAQ --- */
+        /* --- FAQ (تم التعديل هنا) --- */
         .faq-box { max-width: 800px; margin: auto; }
-        .faq-item { background: #f9f9f9; padding: 20px; margin-bottom: 10px; border-radius: 8px; cursor: pointer; font-weight: bold; color: var(--primary-color); display: flex; justify-content: space-between; align-items: center; }
-        .faq-item::after { content: '+'; font-size: 1.5rem; color: var(--secondary-color); }
+        .faq-item { 
+            background: #f9f9f9; 
+            margin-bottom: 10px; 
+            border-radius: 8px; 
+            overflow: hidden; /* لمنع خروج النص أثناء الحركة */
+        }
+        .faq-question {
+            padding: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            color: var(--primary-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.3s ease;
+        }
+        .faq-question:hover { background: #f0f0f0; }
+        .faq-question::after { 
+            content: '+'; 
+            font-size: 1.5rem; 
+            color: var(--secondary-color); 
+        }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            padding: 0 20px;
+            color: #555;
+            transition: max-height 0.4s ease, padding 0.4s ease;
+        }
+        
+        /* التنسيقات عندما يكون السؤال مفتوحاً (نشطاً) */
+        .faq-item.active .faq-question::after { content: '-'; }
+        .faq-item.active .faq-answer {
+            max-height: 200px; /* رقم كبير يكفي لارتفاع النص */
+            padding: 10px 20px 20px 20px;
+            border-top: 1px solid #ddd;
+        }
 
         /* --- Footer --- */
         footer { background: #081223; color: white; padding: 60px 20px; text-align: center; }
@@ -198,48 +225,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         .footer-desc { max-width: 700px; margin: 0 auto 30px; opacity: 0.8; }
         .contact-display { font-size: 2rem; font-weight: 900; color: var(--secondary-color); direction: ltr; margin: 20px 0; display: block; }
 
-        /* =========================================
-           نظام عرض الصور بحجم كامل (Lightbox)
-           ========================================= */
-        .image-modal {
-            display: none;
-            position: fixed;
-            z-index: 9999;
-            padding: 20px;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.9);
-            cursor: zoom-out;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .modal-content {
-            margin: auto;
-            display: block;
-            max-width: 90%;
-            max-height: 90%;
-            border-radius: 5px;
-            box-shadow: 0 0 20px rgba(255,255,255,0.1);
-            animation: zoomIn 0.3s ease;
-        }
-
-        @keyframes zoomIn {
-            from { transform: scale(0.7); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
-        }
-
-        .close-modal {
-            position: absolute;
-            top: 20px;
-            right: 30px;
-            color: #fff;
-            font-size: 40px;
-            font-weight: bold;
-            cursor: pointer;
-        }
+        /* --- Lightbox --- */
+        .image-modal { display: none; position: fixed; z-index: 9999; padding: 20px; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.9); cursor: zoom-out; align-items: center; justify-content: center; }
+        .modal-content { margin: auto; display: block; max-width: 90%; max-height: 90%; border-radius: 5px; box-shadow: 0 0 20px rgba(255,255,255,0.1); animation: zoomIn 0.3s ease; }
+        @keyframes zoomIn { from { transform: scale(0.7); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+        .close-modal { position: absolute; top: 20px; right: 30px; color: #fff; font-size: 40px; font-weight: bold; cursor: pointer; }
 
         /* تجاوب الجوال */
         @media (max-width: 768px) {
@@ -250,12 +240,24 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             .product-card img { height: 180px; }
         }
     </style>
+
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-T253S86J');</script>
+<!-- End Google Tag Manager -->
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-16739705581"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'AW-16739705581');
+</script>
 </head>
 <body>
-  <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T253S86J"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
 
     <header class="hero">
         <div class="container hero-content">
@@ -365,25 +367,40 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <section class="section">
         <div class="container">
-            <h2 class="section-title">اعتماداتنا وموثوقيتنا</h2>
-            <p style="text-align: center;">نحن كيان رسمي مسجل لضمان حقوقك وجودة الخدمة المقدمة</p>
-            <div class="certs-container">
-                <img src="images/sbc-logo.png" alt="المركز السعودي للأعمال">
-                <img src="images/zatca-logo.png" alt="هيئة الزكاة والضريبة">
-                <img src="images/maroof-logo.png" alt="معروف">
+            <h2 class="section-title">الأسئلة الشائعة</h2>
+            <div class="faq-box">
+                <div class="faq-item">
+                    <div class="faq-question">هل يمكنني مراقبة الكاميرات وأنا خارج المنزل أو في بلد آخر؟</div>
+                    <div class="faq-answer">نعم بالتأكيد! يمكنك ربط النظام بهاتفك الذكي أو حاسوبك ومتابعة البث المباشر والتسجيلات من أي مكان في العالم طالما يوجد لديك اتصال بالإنترنت.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">ماذا يحدث في حال انقطاع التيار الكهربائي؟</div>
+                    <div class="faq-answer">تتوقف الكاميرات عن العمل عند انقطاع الكهرباء، ولكن بمجرد عودة التيار تعود للعمل والتسجيل تلقائياً دون الحاجة لأي تدخل منك. (يمكن توفير مزود طاقة احتياطي UPS حسب الطلب).</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">هل الصورة تكون واضحة في الظلام التام؟</div>
+                    <div class="faq-answer">نعم، كاميراتنا مزودة بتقنية الأشعة تحت الحمراء (IR) أو تقنية ColorVu التي توفر لك صورة واضحة ومفصلة حتى في ظروف الظلام التام.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">كم يوماً يمكن للنظام الاحتفاظ بالتسجيلات؟</div>
+                    <div class="faq-answer">يعتمد ذلك على سعة القرص الصلب (الهاردسك) وعدد الكاميرات وجودتها. عادةً نوفر أقراصاً تكفي للتسجيل من أسبوعين إلى شهر كامل وتلقائياً يتم مسح أقدم يوم لتسجيل يوم جديد.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">هل الكاميرات الخارجية تتحمل الأمطار وحرارة الصيف؟</div>
+                    <div class="faq-answer">جميع كاميراتنا الخارجية تأتي بمعيار IP67 ومصممة خصيصاً لتحمل أقسى الظروف الجوية، بما في ذلك أمطار الشتاء الغزيرة وحرارة صيف المملكة المرتفعة.</div>
+                </div>
             </div>
         </div>
     </section>
 
     <section class="section">
         <div class="container">
-            <h2 class="section-title">الأسئلة الشائعة</h2>
-            <div class="faq-box">
-                <div class="faq-item">هل يمكنني مراقبة الكاميرات وأنا خارج المنزل أو في بلد آخر؟</div>
-                <div class="faq-item">ماذا يحدث في حال انقطاع التيار الكهربائي؟</div>
-                <div class="faq-item">هل الصورة تكون واضحة في الظلام التام؟</div>
-                <div class="faq-item">كم يوماً يمكن للنظام الاحتفاظ بالتسجيلات؟</div>
-                <div class="faq-item">هل الكاميرات الخارجية تتحمل الأمطار وحرارة الصيف؟</div>
+            <h2 class="section-title">اعتماداتنا وموثوقيتنا</h2>
+            <p style="text-align: center;">نحن كيان رسمي مسجل لضمان حقوقك وجودة الخدمة المقدمة</p>
+            <div class="certs-container">
+                <img src="images/sbc-logo.png" alt="المركز السعودي للأعمال">
+                <img src="images/zatca-logo.png" alt="هيئة الزكاة والضريبة">
+                <img src="images/maroof-logo.png" alt="معروف">
             </div>
         </div>
     </section>
@@ -408,44 +425,50 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
     <script>
-        // اختيار عناصر الـ Modal
+        // --- كود عرض الصور (موجود مسبقاً) ---
         const modal = document.getElementById("imageModal");
         const modalImg = document.getElementById("fullImage");
         const closeModal = document.getElementsByClassName("close-modal")[0];
-
-        // اختيار جميع الصور في الموقع باستثناء شعارات الاعتماد
         const allImages = document.querySelectorAll('img:not(.certs-container img)');
 
         allImages.forEach(img => {
             img.onclick = function() {
                 modal.style.display = "flex";
                 modalImg.src = this.src;
-                document.body.style.overflow = "hidden"; // منع التمرير عند فتح الصورة
+                document.body.style.overflow = "hidden";
             }
         });
 
-        // إغلاق عند الضغط على X
-        closeModal.onclick = function() {
-            closeImage();
-        }
-
-        // إغلاق عند الضغط في أي مكان خارج الصورة
-        modal.onclick = function(event) {
-            if (event.target === modal) {
-                closeImage();
-            }
-        }
+        closeModal.onclick = function() { closeImage(); }
+        modal.onclick = function(event) { if (event.target === modal) { closeImage(); } }
 
         function closeImage() {
             modal.style.display = "none";
-            document.body.style.overflow = "auto"; // إعادة التمرير
+            document.body.style.overflow = "auto";
         }
 
-        // إغلاق عند الضغط على زر ESC في الكيبورد
         document.addEventListener('keydown', function(event) {
-            if (event.key === "Escape") {
-                closeImage();
-            }
+            if (event.key === "Escape") { closeImage(); }
+        });
+
+        // --- الكود الجديد الخاص بالأسئلة الشائعة (FAQ) ---
+        const faqQuestions = document.querySelectorAll('.faq-question');
+
+        faqQuestions.forEach(question => {
+            question.addEventListener('click', () => {
+                const item = question.parentElement;
+                
+                // إذا أردت أن يُغلق أي سؤال مفتوح عند فتح سؤال جديد، قم بإلغاء التعليق عن الأسطر التالية:
+                /*
+                document.querySelectorAll('.faq-item').forEach(otherItem => {
+                    if (otherItem !== item) {
+                        otherItem.classList.remove('active');
+                    }
+                });
+                */
+               
+                item.classList.toggle('active');
+            });
         });
     </script>
 
